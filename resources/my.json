@@ -1,0 +1,64 @@
+[
+    {
+        "genre": "science_fiction",
+        "name": "2001: A Space Odyssey",
+        "type": "movies",
+        "year": 1968
+    },
+    {
+        "genre": "thriller",
+        "name": "The Godfather",
+        "type": "movies",
+        "year": 1972
+    },
+    {
+        "genre": "drama",
+        "name": "Citizen Kane",
+        "type": "movies",
+        "year": 1941
+    },
+    {
+        "genre": "adventure_fiction",
+        "name": "The Witcher",
+        "type": "series",
+        "year": 2019
+    },
+    {
+        "genre": "comedy",
+        "name": "Scrubs",
+        "type": "series",
+        "year": 2001,
+        "finishYear": 2010
+    },
+    {
+        "genre": "action",
+        "name": "The Dark Knight",
+        "type": "movies",
+        "year": 2008
+    },
+    {
+        "genre": "science_fiction",
+        "name": "Star Wars",
+        "type": "movies",
+        "year": 1977
+    },
+    {
+        "genre": "drama",
+        "name": "Pulp Fiction",
+        "type": "movies",
+        "year": 1994
+    },
+    {
+        "genre": "animation",
+        "name": "Spirited Away",
+        "type": "movies",
+        "year": 2001
+    },
+    {
+        "genre": "comedy",
+        "name": "How I Met Your Mother",
+        "type": "series",
+        "year": 2005,
+        "finishYear": 2014
+    }
+]

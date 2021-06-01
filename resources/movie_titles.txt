@@ -1,0 +1,41 @@
+10
+2001: A Space Odyssey
+1968
+movies
+science_fiction
+The Godfather
+1972
+movies
+thriller
+Citizen Kane
+1941
+movies
+drama
+The Witcher
+2019
+series
+adventure_fiction
+Scrubs
+2001
+series
+comedy
+The Dark Knight
+2008
+movies
+action
+Star Wars
+1977
+movies
+science_fiction
+Pulp Fiction
+1994
+movies
+drama
+Spirited Away
+2001
+movies
+animation
+How I Met Your Mother
+2005
+series
+comedy
