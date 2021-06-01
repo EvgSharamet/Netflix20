@@ -6,6 +6,7 @@
 
 using json = nlohmann::json;
 
+
 int main() {
 /*
     {
@@ -38,13 +39,19 @@ int main() {
         std::ofstream out("my.json");
         out<<std::setw(4)<< movies << std::endl;
     }*/
-    std::string fileName = "my.json";
+
+
+   std::string fileName = "my.json";
 
     Collection myCol;
     myCol.createContent(fileName);
-    myCol.print();
+    myCol.createFilters();
+    // myCol.print();
+    std::vector<VideoContent> mySearchResult =  myCol.extract(FilterType::disjunction);
 
-//    std::cout<<std::setw(4)<< my << std::endl;
+    for(auto & i : mySearchResult) {
+        i.print();
+    }
 
     return 0;
 }

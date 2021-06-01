@@ -135,8 +135,3 @@ void Collection::print( ){
     }
 }
 
-
-Collection::~Collection() {
-    for(const auto &[ key, value]: filters_ )
-        delete value;
-}

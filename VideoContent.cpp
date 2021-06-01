@@ -37,10 +37,13 @@ void VideoContent::print() const {
     switch (*type_) {
         case ContentType::movies:
             std::cout << "type = movies" << std::endl;
+            break;
         case ContentType::series:
             std::cout << "type = series" << std::endl;
+            break;
         case ContentType::missing:
             std::cout << "type = missing" << std::endl;
+            break;
 
         }
     if(genre_)
