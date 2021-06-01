@@ -1,11 +1,9 @@
-#include "Collection.h"
-#include <iostream>
+#include "MediaCollection.h"
 #include <vector>
 #include <fstream>
 #include <string>
 #include <optional>
 #include <nlohmann/json.hpp>
-
 
 using json = nlohmann::json;
 
@@ -16,7 +14,9 @@ std::optional<T> extractFromJson(const json& j, const std::string& key) {
     return std::nullopt;
 }
 
-Genre StringToGenre(std::optional<std::string> stringWithGenre){
+Genre StringToGenre(std::optional<std::string> stringWithGenre) {
+    if (!stringWithGenre)
+        return Genre::missing;
 
     if (*stringWithGenre == "horror")
         return Genre::horror;
@@ -60,44 +60,35 @@ Genre StringToGenre(std::optional<std::string> stringWithGenre){
     return Genre::missing;
 }
 
-ContentType StringToContentType(std::optional<std::string> stringWithContentType){
+ContentType StringToContentType(std::optional<std::string> stringWithContentType) {
+    if (!stringWithContentType)
+        return ContentType::missing;
 
-    if(*stringWithContentType == "movies")
+    if (*stringWithContentType == "movies")
         return ContentType::movies;
 
-    if(*stringWithContentType == "series")
+    if (*stringWithContentType == "series")
         return ContentType::series;
 
     return ContentType::missing;
 }
 
-
-
-//Collection::Collection(std::string *pString) {
-    //createFilters();
-
-void Collection::createContent( std::string& fileName) {
-
-    std::ifstream in(fileName);
-    json my;
-    in >> my;
-    for(auto& element : my) {
-
+void MediaCollection::createContent(std::string& fileName) {
+    std::ifstream in{fileName};
+    json data;
+    in >> data; //TODO add try catch
+    for(auto& element : data) {
         auto name = extractFromJson<std::string>(element , "name");
         Genre genre = StringToGenre(extractFromJson<std::string>(element, "genre"));
         auto type = StringToContentType(extractFromJson<std::string>(element, "type"));
         auto publicationYear = extractFromJson<int>(element, "year");
         auto finishYear = extractFromJson<int>(element, "finishYear");
 
-        //VideoContent(name,genre,type,publicationYear,finishYear).print();
-        content_.emplace_back(name, genre,type,publicationYear,finishYear);
-
+        content_.emplace_back(name, genre, type, publicationYear, finishYear);
     }
-
 }
 
-void Collection::createFilters(){
-
+void MediaCollection::createFilters() {
     auto genreComedy =  [](const VideoContent& content){
         return (content.getGenre() == Genre::comedy);
     };
@@ -118,20 +109,18 @@ void Collection::createFilters(){
 
     DisjunctionFilter disjunction{{ genreComedy, publicationYearMore2005}};
     filters_.insert({FilterType::disjunction, disjunction});
-
 }
-std::vector<VideoContent> Collection::extract(FilterType type){
+
+std::vector<VideoContent> MediaCollection::extract(FilterType type) {
     std::vector<VideoContent> result;
     for(const auto& item : content_)
         if (filters_[type](item))
             result.push_back(item);
-        return result;
+    return result;
 }
 
-
-void Collection::print( ){
-    for( const auto& item: content_){
+void MediaCollection::print() {
+    for( const auto& item: content_)
         item.print();
-    }
 }
 
