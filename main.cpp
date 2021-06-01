@@ -1,56 +1,21 @@
-#include <iostream>
-#include <nlohmann/json.hpp>
-#include <fstream>
 #include <string>
-#include "Collection.h"
+#include <nlohmann/json.hpp>
+#include "MediaCollection.h"
 
 using json = nlohmann::json;
 
 
 int main() {
-/*
-    {
-        json movies = json::array();
-        std::ifstream in("movie_titles.txt");
-        std::string s;
-        if (in.is_open()) {
-            int number, tmp;
+   std::string fileName{"my.json"};
 
-            std::getline(in, s);
-            number = std::stoi(s);
-            json j;
-            for (int i = 0; i < number; i++) {
-                std::getline(in, s);
-                j["name"] = s;
+    MediaCollection mediaCollection;
+    mediaCollection.createContent(fileName);
+    mediaCollection.createFilters();
 
-                std::getline(in, s);
-                tmp = std::stoi(s);
-                j["year"] = tmp;
+    auto extractedData =  mediaCollection.extract(FilterType::disjunction);
 
-                std::getline(in, s);
-                j["type"] = s;
-
-                std::getline(in, s);
-                j["genre"] = s;
-
-                movies.push_back(j);
-            }
-        }
-        std::ofstream out("my.json");
-        out<<std::setw(4)<< movies << std::endl;
-    }*/
-
-
-   std::string fileName = "my.json";
-
-    Collection myCol;
-    myCol.createContent(fileName);
-    myCol.createFilters();
-    // myCol.print();
-    std::vector<VideoContent> mySearchResult =  myCol.extract(FilterType::disjunction);
-
-    for(auto & i : mySearchResult) {
-        i.print();
+    for(auto& ext : extractedData) {
+        ext.print();
     }
 
     return 0;

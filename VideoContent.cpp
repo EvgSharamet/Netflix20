@@ -2,21 +2,19 @@
 #include <utility>
 
 VideoContent::VideoContent(std::optional<std::string> name, std::optional<Genre> genre,
-                           std::optional<ContentType> type,std::optional<int> publicationYear)
-                           : name_(std::move(name)),genre_(genre),type_(type),
-                           publicationYear_(publicationYear){
-}
-VideoContent::VideoContent(std::optional<std::string> name, std::optional<Genre> genre,
                            std::optional<ContentType> type, std::optional<int> publicationYear,
-                           std::optional<int> finishYear) :
-name_(std::move(name)),genre_(genre),type_(type), publicationYear_(publicationYear),finishYear_(finishYear){
-
-}
-
+                           std::optional<int> finishYear)
+   : name_(std::move(name))
+   , genre_(genre)
+   , type_(type)
+   , publicationYear_(publicationYear)
+   , finishYear_(finishYear)
+{}
 
 std::optional<Genre> VideoContent::getGenre() const{
     return genre_;
 }
+
 std::optional<int> VideoContent::getPublicationYear() const{
     return publicationYear_;
 }
@@ -28,7 +26,6 @@ std::optional<int> VideoContent::getFinishYear() const {
 std::optional<ContentType> VideoContent::getType() const {
     return type_;
 }
-
 
 void VideoContent::print() const {
     if(name_)
@@ -44,8 +41,8 @@ void VideoContent::print() const {
         case ContentType::missing:
             std::cout << "type = missing" << std::endl;
             break;
-
         }
+
     if(genre_)
         switch (*genre_) {
             case Genre::horror:
@@ -94,8 +91,10 @@ void VideoContent::print() const {
 
     if(publicationYear_)
         std::cout<<"Publication year = "<<*publicationYear_<<std::endl;
+
     if(finishYear_)
         std::cout<<"Finish year= " << *finishYear_ << std::endl;
+
     std::cout<<""<<std::endl;
 }
 
